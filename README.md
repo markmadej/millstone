@@ -12,6 +12,9 @@ millstone acknowledges that it requires discipline and hard work to achieve this
 
 I plan to use millstone during my everyday work, and I work in an agile environment.  For now scrum will be the target, but other things like Kanban may be supported in the future.
 
+## Development setup
+
+
 ## Initial architecture decisions
 ### Technologies
 As far as language, I'm going to use Java.  It's what I'm using at work and I'm very comfortable with it, so why not.  I'd like to start making progress quickly so experimenting with a new language doesn't work with that goal for now.
@@ -35,10 +38,16 @@ millstone will initially support the standard daily cycle of an agile environmen
 
 millstone 1.0 will be a task list with tagging capabilities, and a custom standup view.  You will be able to add items to a task list, and mark them as:
 * Scrum Worthy (which means it will show up on the scrum list)
+* Worked on Today
+* Blocked
 * New / In Progress / Completed / Not Completed
 
 The date they are created will be automatically tracked as well.
 
 When you bring up the standup view, it will display:
-* Items you completed yesterday
-* 
+* Scrum-worthy items you completed yesterday
+* Scrum-worthy items that you worked on, but did not complete, yesterday
+* Scrum-worthy items that are not yet started
+* Blocked items
+
+You should be able to access the standup view for any given date : ie /users/1/standup/2018/07/06 (or something similar)
