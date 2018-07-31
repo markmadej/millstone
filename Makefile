@@ -15,3 +15,6 @@ coverageinbrowser:
 	open ./target/site/jacoco/com.mmadej.millstone/index.html
 
 viewcoverage: coverage coverageinbrowser
+
+debuglocal:
+	$(MVN) spring-boot:run
