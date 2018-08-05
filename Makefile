@@ -6,6 +6,12 @@ lint:
 unit:
 	$(MVN) clean test
 
+install:
+	$(MVN) clean install
+
+run:
+	$(MVN) spring-boot:run
+
 test: lint unit
 
 coverage:

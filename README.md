@@ -14,6 +14,14 @@ I plan to use millstone during my everyday work, and I work in an agile environm
 
 ## Development setup
 
+To run locally, run this command:
+```
+make install && make run
+```
+The login page is at [http://localhost:8080](http://localhost:8080).  You can login with the username `user` and the password that gets printed out to the terminal:
+```
+Using generated security password: 3053a5e1-08ff-453f-b37b-d20a429bd88f
+```
 
 ## Initial architecture decisions
 ### Technologies
