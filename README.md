@@ -23,6 +23,21 @@ The login page is at [http://localhost:8080](http://localhost:8080).  You can lo
 Using generated security password: 3053a5e1-08ff-453f-b37b-d20a429bd88f
 ```
 
+## Environment variables
+None yet configured.
+
+## Makefile targets
+|Target name|Purpose|
+|-----------|-------|
+|lint|Run Checkstyle checks.|
+|unit|Run unit tests.|
+|install|Build the project.|
+|run|Run the project locally.|
+|test|Run lint checks and unit tests.|
+|coverage|Generate a coverage report.|
+|coverageinbrowser|View the previously generated coverage report in your browser.|
+|viewcoverage|Generate a coverage report and open it in a browser.|
+
 ## Initial architecture decisions
 ### Technologies
 As far as language, I'm going to use Java.  It's what I'm using at work and I'm very comfortable with it, so why not.  I'd like to start making progress quickly so experimenting with a new language doesn't work with that goal for now.
