@@ -37,6 +37,7 @@ None yet configured.
 |coverage|Generate a coverage report.|
 |coverageinbrowser|View the previously generated coverage report in your browser.|
 |viewcoverage|Generate a coverage report and open it in a browser.|
+|help|Show help text regarding the Makefile options.|
 
 ## Initial architecture decisions
 ### Technologies
