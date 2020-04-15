@@ -124,6 +124,12 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-jdbc</artifactId>
 		</dependency>
+	   <dependency>
+		   <!-- Datasource used by default by Spring Boot if no profile is set -->
+		   <groupId>com.h2database</groupId>
+		   <artifactId>h2</artifactId>
+		   <version>1.4.197</version>
+	   </dependency>
 	</dependencies>
 
 	<build>
