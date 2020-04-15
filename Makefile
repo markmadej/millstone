@@ -6,23 +6,21 @@ SHELL=/bin/bash -o pipefail
 help: ## Display this help page
 	@grep -E '^[a-zA-Z0-9/_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
-MVN=mvn
-
 .PHONY: lint
 lint:  ## Run Checkstyle checks.
-	$(MVN) checkstyle:check
+	mvn checkstyle:check -Pdev
 
 .PHONY: unit
 unit:  ## Run unit tests.
-	$(MVN) clean test
+	mvn clean test -Pdev
 
 .PHONY: install
 install:  ## Maven install.
-	$(MVN) clean install
+	mvn clean install -Pdev
 
 .PHONY: run
 run:  ## Run the service.
-	$(MVN) spring-boot:run
+	mvn spring-boot:run -Pdev
 
 .PHONY: test
 test: ## Run all tests.
@@ -30,7 +28,7 @@ test: ## Run all tests.
 
 .PHONY: coverage
 coverage:  ## Run code coverage report.
-	$(MVN) clean jacoco:prepare-agent install jacoco:report
+	mvn clean jacoco:prepare-agent install jacoco:report -Pdev
 
 .PHONY: coverageinbrowser
 coverageinbrowser:  ## View code coverage report in browser (assumes you already created it).
@@ -40,19 +38,35 @@ coverageinbrowser:  ## View code coverage report in browser (assumes you already
 viewcoverage:  ## Run coverage report and open it in a browser window.
 	$(MAKE) coverage coverageinbrowser
 
-.PHONY: newmysql
-newmysql:  ## Create a new mySQL instance with hardcoded password.
-	docker run --name millstone-mysql -v $(PWD)/localMySQLData:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=mysqlpass -d mysql:latest
+.PHONY: newdb
+newdb:  ## Create a new mySQL instance with hardcoded password.
+	docker run -p 3306:3306 --name millstone-mysql -v $(PWD)/localMySQLData:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=mysqlpass -e MYSQL_DATABASE=millstone -d mysql:5.6
 	@echo Your mySQL password is mysqlpass
 
-.PHONY: startmysql
-startmysql: ## Start the previously created mySQL instance.
+.PHONY: startdb
+startdb: ## Start the previously created mySQL instance.
 	docker start millstone-mysql
 
-.PHONY: stopmysql
-stopmysql: ## Stop the current running mySQL instance.
+.PHONY: stopdb
+stopdb: ## Stop the current running mySQL instance.
 	docker stop millstone-mysql
 
-.PHONY: rmmysql
-rmmysql: ## Remove the mySQL Docker container (removing any existing data).
+.PHONY: rmdb
+rmdb: rmdbdata ## Remove the mySQL Docker container (removing any existing data).
 	docker rm millstone-mysql
+
+.PHONY: rmdbdata
+rmdbdata: ## Remove the local mySQL data directory.
+	touch $(PWD)/localMySQLData  ## Just so the rm command does not error out if this directory was already deleted.
+	rm -r $(PWD)/localMySQLData
+
+.PHONY: cleandb
+cleandb: stopdb rmdb newdb startdb ## Remove the existing mySQL container/image and rebuild/restart everything.
+
+.PHONY: dbprompt
+dbprompt: ## Open a local mySQL server prompt.
+	mysql -h 127.0.0.1 -P3306 -uroot -pmysqlpass
+
+.PHONY: dblogs
+dblogs: ## Dump logs from the mySQL Docker container.
+	docker logs millstone-mysql

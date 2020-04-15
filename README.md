@@ -26,52 +26,9 @@ Using generated security password: 3053a5e1-08ff-453f-b37b-d20a429bd88f
 ## Environment variables
 None yet configured.
 
-## Makefile targets
-|Target name|Purpose|
-|-----------|-------|
-|lint|Run Checkstyle checks.|
-|unit|Run unit tests.|
-|install|Build the project.|
-|run|Run the project locally.|
-|test|Run lint checks and unit tests.|
-|coverage|Generate a coverage report.|
-|coverageinbrowser|View the previously generated coverage report in your browser.|
-|viewcoverage|Generate a coverage report and open it in a browser.|
-|help|Show help text regarding the Makefile options.|
+# Product
+Click here for [Millstone Product](./documentation/product/README.md).
 
-## Initial architecture decisions
-### Technologies
-As far as language, I'm going to use Java.  It's what I'm using at work and I'm very comfortable with it, so why not.  I'd like to start making progress quickly so experimenting with a new language doesn't work with that goal for now.
-
-Spring Boot is also an obvious choice, it works well and I understand it.  I think I'll choose a Spring Boot template with some built in REST/JSON support, database, Oauth2, Spring Security (although I'm not really sure what that is) - basically bring a bunch of things in that are important.  However, to make sure the project doesn't become too bloated I'm also going to create issues in Github for each selected item so I can follow up and make sure I'm actually using it and using it properly.  
-
-For linting, Checkstyle has worked well.
-
-For code coverage I'll use [JaCoCo](https://www.eclemma.org/jacoco/).  I haven't used it before so that will be interesting.
-  
-Database - I'm going to use PostgreSQL.  I'm more familiar with mySQL at this point, so this is an area where I can comfortably grow while not slowing progress down.  I think the differences will be minimal, but I might learn some interesting differences between mySQL and PostgreSQL.
-
-I'm not going to use an ORM like Hibernate, I'm going to write my own SQL.  I love writing SQL, I feel very comfortable with it, and that will give me a ton of flexibility.  I'm debating this a bit because I think it would be a good learning experience, but I enjoy writing SQL so much that I just don't care, and it would also slow me down a lot. 
-
-I'll probably use AWS for deployment.  I'm using it at work and while I haven't configured that all myself, I'm very interested and capable of digging in and figuring this all out.  I'll try to adhere to best practices on aspects like security, logging, etc - this will require a lot of learning on my part, but I'm up to the challenge.  
-## Product decisions
-### Initial v1.0 functionality requirements
-millstone should be built using lean methodologies, aiming to get a product to customer hands with solid, but limited functionality at first.
-
-millstone will initially support the standard daily cycle of an agile environment - a scrum meeting in the AM where you report what you did yesterday, what you're doing today, and anything blocking you.  In addition, you need a task list to keep you organized throughout the day.
-
-millstone 1.0 will be a task list with tagging capabilities, and a custom standup view.  You will be able to add items to a task list, and mark them as:
-* Scrum Worthy (which means it will show up on the scrum list)
-* Worked on Today
-* Blocked
-* New / In Progress / Completed / Not Completed
-
-The date they are created will be automatically tracked as well.
-
-When you bring up the standup view, it will display:
-* Scrum-worthy items you completed yesterday
-* Scrum-worthy items that you worked on, but did not complete, yesterday
-* Scrum-worthy items that are not yet started
-* Blocked items
-
-You should be able to access the standup view for any given date : ie /users/1/standup/2018/07/06 (or something similar)
+# Additional Information
+* [Architectural Decisions](./documentation/architecturalDecisions.md)
+* [Random notes](./documentation/randomNotes.md)

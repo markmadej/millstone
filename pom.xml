@@ -24,7 +24,47 @@
 		<java.version>1.8</java.version>
 	</properties>
 
+	<profiles>
+		<profile>
+			<!-- Assuming development on your local machine.  -->
+			<id>dev</id>
+			<properties>
+				<!-- Properties are prefixed with flyway. -->
+				<flyway.user>root</flyway.user>
+				<!-- Could pull this data from environment variables like {env.VARIABLE_NAME} -->
+				<flyway.password>mysqlpass</flyway.password>
+				<flyway.url>jdbc:mysql://127.0.0.1:3306/millstone</flyway.url>
+				<flyway.driver>com.mysql.jdbc.Driver</flyway.driver>
+				<flyway.defaultSchema>millstone</flyway.defaultSchema>
+
+				<!-- Referenced in application.properties -->
+				<spring.profiles.active>dev</spring.profiles.active>
+			</properties>
+		</profile>
+		<profile>
+			<!-- Production environment. -->
+			<!-- Incomplete - there is no prod environment at this point. -->
+			<id>prod</id>
+			<properties>
+				<!-- Properties are prefixed with flyway. -->
+				<flyway.user>TBD</flyway.user>
+				<flyway.password>TBD</flyway.password>
+
+				<!-- List are defined as comma-separated values -->
+				<flyway.schemas>TBD</flyway.schemas>
+
+				<!-- Referenced in application.properties -->
+				<spring.profiles.active>prod</spring.profiles.active>
+			</properties>
+		</profile>
+	</profiles>
+
 	<dependencies>
+	   <dependency>
+		   <groupId>org.mybatis.spring.boot</groupId>
+		   <artifactId>mybatis-spring-boot-starter</artifactId>
+		   <version>1.3.2</version>
+	   </dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -45,12 +85,6 @@
 			<groupId>org.flywaydb</groupId>
 			<artifactId>flyway-core</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>org.mybatis.spring.boot</groupId>
-			<artifactId>mybatis-spring-boot-starter</artifactId>
-			<version>1.3.2</version>
-		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
@@ -82,14 +116,36 @@
 			<version>0.8.1</version>
 		</dependency>
 		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-			<version>1.4.197</version>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>8.0.12</version>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+		</dependency>
+<!--		<dependency>-->
+<!--			&lt;!&ndash; Datasource used by default by Spring Boot &ndash;&gt;-->
+<!--			<groupId>com.h2database</groupId>-->
+<!--			<artifactId>h2</artifactId>-->
+<!--			<version>1.4.197</version>-->
+<!--		</dependency>-->
 	</dependencies>
 
 	<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
 		<plugins>
+
+			<plugin>
+				<groupId>org.flywaydb</groupId>
+				<artifactId>flyway-maven-plugin</artifactId>
+				<version>6.3.3</version>
+			</plugin>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
@@ -116,6 +172,4 @@
 			</plugin>
 		</plugins>	
 	</build>
-
-
 </project>
