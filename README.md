@@ -23,6 +23,13 @@ The login page is at [http://localhost:8080](http://localhost:8080).  You can lo
 Using generated security password: 3053a5e1-08ff-453f-b37b-d20a429bd88f
 ```
 
+## Calling REST endpoints
+Some REST endpoints are defined in `UserController`/`ErrorController`.  You need to use basic authentication to access these.  Postman is a good option for creating/sending these requests.
+
+See `SecurityConfig` for the usernames/passwords, they are hardcoded (this needs to be fixed).
+
+If you use Postman, you can add Basic Authentication with a username/password and that will be used when submitting the request.  To add a user you will need to add JSON in the request body for all relevant User fields.
+
 ## Environment variables
 None yet configured.
 
@@ -32,3 +39,7 @@ Click here for [Millstone Product](./documentation/product/README.md).
 # Additional Information
 * [Architectural Decisions](./documentation/architecturalDecisions.md)
 * [Random notes](./documentation/randomNotes.md)
+
+# Additional External Information
+* [Spring Boot Reference Documentation](https://docs.spring.io/spring-boot/docs/current/reference/html/index.html)
+

@@ -9,7 +9,7 @@
 	<packaging>jar</packaging>
 
 	<name>millstone</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Software Engineer Task List</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -75,11 +75,11 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-jersey</artifactId>
+			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
+			<artifactId>spring-boot-starter-logging</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.flywaydb</groupId>
@@ -124,6 +124,12 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-jdbc</artifactId>
 		</dependency>
+	   <dependency>
+		   <!-- Datasource used by default by Spring Boot if no profile is set -->
+		   <groupId>com.h2database</groupId>
+		   <artifactId>h2</artifactId>
+		   <version>1.4.197</version>
+	   </dependency>
 	</dependencies>
 
 	<build>
@@ -134,7 +140,17 @@
 			</resource>
 		</resources>
 		<plugins>
-
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.7</version>
+				<configuration>
+					<delimiters>
+						<delimiter>@</delimiter>
+					</delimiters>
+					<useDefaultDelimiters>false</useDefaultDelimiters>
+				</configuration>
+			</plugin>
 			<plugin>
 				<groupId>org.flywaydb</groupId>
 				<artifactId>flyway-maven-plugin</artifactId>
