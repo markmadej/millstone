@@ -12,6 +12,9 @@ millstone acknowledges that it requires discipline and hard work to achieve this
 
 I plan to use millstone during my everyday work, and I work in an agile environment.  For now scrum will be the target, but other things like Kanban may be supported in the future.
 
+## Team Agreement
+[I'm using `team-agreement`](https://github.com/markmadej/team-agreement) as a default for issues related to this repo.  Please familiarize yourself with this repo before starting work on this project.
+
 ## Development setup
 
 To run locally, run this command:
