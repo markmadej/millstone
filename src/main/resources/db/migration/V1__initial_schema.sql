@@ -5,6 +5,7 @@ CREATE TABLE tasks (
     project_id BIGINT UNSIGNED,
     description VARCHAR(200),
     blocked BOOL,
+    last_time_in_progress TIMESTAMP,
     created_time TIMESTAMP,
     completed_time TIMESTAMP
 );
