@@ -26,6 +26,21 @@
 
 	<profiles>
 		<profile>
+			<!-- For unit tests.  -->
+			<id>unit</id>
+			<properties>
+				<!-- Properties are prefixed with flyway. -->
+				<flyway.user>test</flyway.user>
+				<flyway.password>test</flyway.password>
+				<flyway.url>jdbc:h2:file:./localH2TestData/dbFile;user=test;password=test</flyway.url>
+				<flyway.driver>org.h2.Driver</flyway.driver>
+				<flyway.defaultSchema>millstone</flyway.defaultSchema>
+
+				<!-- Referenced in application.properties -->
+				<spring.profiles.active>unit</spring.profiles.active>
+			</properties>
+		</profile>
+		<profile>
 			<!-- Assuming development on your local machine.  -->
 			<id>dev</id>
 			<properties>
@@ -130,6 +145,21 @@
 		   <artifactId>h2</artifactId>
 		   <version>1.4.197</version>
 	   </dependency>
+		<!-- https://mvnrepository.com/artifact/org.hsqldb/hsqldb -->
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<version>1.4.197</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.mockito/mockito-core -->
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<version>2.22.0</version>
+			<scope>test</scope>
+		</dependency>
+
 	</dependencies>
 
 	<build>

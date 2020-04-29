@@ -8,11 +8,11 @@ help: ## Display this help page
 
 .PHONY: lint
 lint:  ## Run Checkstyle checks.
-	mvn checkstyle:check -Pdev
+	mvn checkstyle:check -Punit
 
 .PHONY: unit
 unit:  ## Run unit tests.
-	mvn clean test -Pdev
+	mvn clean test -Punit
 
 .PHONY: install
 install:  ## Maven install.
